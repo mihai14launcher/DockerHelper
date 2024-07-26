@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DockerHelper</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <h1><i class="fab fa-docker"></i> Docker Helper</h1>
+        <nav>
+            <ul>
+                <li><a href="#" data-file="home.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="#" data-file="commands.html"><i class="fas fa-terminal"></i> Codes</a></li>
+                <li><a href="#" data-file="installation.html"><i class="fas fa-download"></i> Installation</a></li>
+                <li><a href="#" data-file="testproviders.html"><i class="fas fa-vial"></i> Test Providers</a></li>
+                <li><a href="#" data-file="ListofCodes.html"><i class="fab fa-docker"></i>List of Codes</a></li>
+                <li><a href="#" data-file="freehostings.html"><i class="fab fa-google"></i> Free Hostings [DOCKER]</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="content">
+            <h2>Welcome to Docker Wiki</h2>
+            <p>This is a comprehensive guide to using Docker, a platform for developing, shipping, and running applications.</p>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 VOX. All rights reserved.</p>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = document.querySelectorAll('nav ul li a');
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    const file = link.getAttribute('data-file');
+                    loadHTML(`docs/${file}`);
+                });
+            });
+
+            function loadHTML(file) {
+                fetch(file)
+                    .then(response => response.text())
+                    .then(html => {
+                        document.querySelector('#content').innerHTML = html;
+                        animateContent();
+                    })
+                    .catch(error => {
+                        console.error('Error loading HTML file:', error);
+                        document.querySelector('#content').innerHTML = '<p>Error loading content. Please try again later.</p>';
+                    });
+            }
+
+            function animateContent() {
+                const content = document.querySelector('#content');
+                content.style.opacity = 0;
+                setTimeout(() => {
+                    content.style.opacity = 1;
+                    content.style.transition = 'opacity 0.5s ease';
+                }, 100);
+            }
+
+            // Load default content
+            loadHTML('docs/home.html');
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
