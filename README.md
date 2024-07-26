@@ -13,3 +13,5 @@
 
 # Link DockerHelper : [https://dockerhelper.vercel.app](https://dockerhelper.onrender.com/)
 # Link our discord : https://discord.gg/PXTtxEK7g8
+
+You can use our discord bot DockerHelper to fix your issues or view new codes before will be launched on Web.
